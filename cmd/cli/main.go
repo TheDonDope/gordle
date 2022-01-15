@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/erikgeiser/promptkit/textinput"
 )
@@ -21,10 +22,20 @@ type Guess struct {
 	Evaluation string
 }
 
+func evaluate(guess string, solution string) string {
+	evaluation := []string{"⬛", "⬛", "⬛", "⬛", "⬛"}
+	if guess == solution {
+		for i := range evaluation {
+			evaluation[i] = "🟩"
+		}
+	}
+	return strings.Join(evaluation, "")
+}
+
 func newGuess(guess string) *Guess {
 	return &Guess{
 		Value:      guess,
-		Evaluation: "⬛⬛⬛⬛⬛",
+		Evaluation: evaluate(guess, gotd),
 	}
 }
 
