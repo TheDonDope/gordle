@@ -17,3 +17,16 @@ func MatchReturns5GreenSquaresOnCompleteCorrectGuess(t *testing.T) {
 		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
 	}
 }
+
+func MatchReturns5BlackSquaresIfWordDoesNotMatchAtAll(t *testing.T) {
+	solution := "YOLOL"
+	prmpt := "DUNED"
+
+	guess := NewGuess(prmpt, solution)
+
+	want := "⬛⬛⬛⬛⬛"
+	got := guess.Match(solution)
+	if got != want {
+		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
+	}
+}
