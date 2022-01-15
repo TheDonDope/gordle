@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: server
+  name: server
+spec:
+  ports:
+    - name: "4242"
+      port: 4242
+      targetPort: 4242
+  selector:
+    io.kompose.service: server
+status:
+  loadBalancer: {}
