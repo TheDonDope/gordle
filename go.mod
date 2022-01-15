@@ -3,11 +3,9 @@ module github.com/TheDonDope/gordle
 go 1.17
 
 require (
-	github.com/auth0-community/go-auth0 v1.0.0
 	github.com/charmbracelet/bubbletea v0.16.0
 	github.com/erikgeiser/promptkit v0.6.0
 	github.com/gin-gonic/gin v1.7.0
-	gopkg.in/square/go-jose.v2 v2.1.7
 )
 
 require (
