@@ -44,6 +44,7 @@ $ go tool cover -html=coverage.out
 - Build and run the server:
 
 ```shell
-$ kubectl.exe apply -f server-deployment.yaml,server-service.yaml
-kubectl.exe apply -f server-deployment.yaml,server-service.yaml
+$ kubectl apply -f server-deployment.yaml,server-service.yaml
+deployment.apps/server created
+service/server created
 ```
