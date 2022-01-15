@@ -7,22 +7,22 @@ import (
 
 	"github.com/erikgeiser/promptkit/textinput"
 
-	val "github.com/TheDonDope/gordle/pkg/validation"
+	grd "github.com/TheDonDope/gordle/pkg/validation"
 )
 
 const (
-	wotd = "ALTER"
-	max  = 6
-	cr   = "\033[0;0H"
+	maxTrys = 6
+	cr      = "\033[0;0H"
 )
 
 func main() {
-	guesses := []*val.Guess{}
-
+	gotd := grd.NewWotd()
+	guesses := []*grd.Guess{}
 	r := 1
 
 	fmt.Println("Welcome to 🟩🟨⬛ Gordle ⬛🟨🟩")
 	fmt.Println("You have 6 trys to guess the word of the day.")
+	fmt.Println("NOTE: The current implementation will pick a new word on every run!")
 	fmt.Println("🟩 means, the letter is in the word and in the correct spot.")
 	fmt.Println("🟨 means, that the letter is in the word but in the wrong spot.")
 	fmt.Println("⬛ means, that the letter is in not in the word in any spot.")
@@ -34,15 +34,15 @@ func main() {
 		return len(value) == 5
 	}
 
-	for try := 0; try < 6; try++ {
+	for try := 0; try < maxTrys; try++ {
 		prmpt, err := input.RunPrompt()
 		if err != nil {
 			fmt.Printf("Error: %v\n", err)
 
 			os.Exit(1)
 		}
-		g := val.NewGuess(prmpt, wotd)
-		fmt.Printf("%v %v (Try %v/%v)\n", g.Value, g.Evaluation, r, max)
+		g := grd.NewGuess(prmpt, gotd)
+		fmt.Printf("%v %v (Try %v/%v)\n", g.Value, g.Evaluation, r, maxTrys)
 		guesses = append(guesses, g)
 		if g.Won() {
 			fmt.Println("\nCongratulations, you won! 🥳🥳")
@@ -52,7 +52,7 @@ func main() {
 	}
 	fmt.Printf("\nYour Gordle results (%v):\n", time.Now().Format("2006-01-02"))
 	for i, v := range guesses {
-		fmt.Printf("%v %v (%v/%v)\n", v.Value, v.Evaluation, i+1, max)
+		fmt.Printf("%v %v (%v/%v)\n", v.Value, v.Evaluation, i+1, maxTrys)
 	}
-	fmt.Printf("\nThe solution was: %s", wotd)
+	fmt.Printf("\nThe solution was: %s", gotd)
 }

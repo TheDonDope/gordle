@@ -1,6 +1,10 @@
 package validation
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/bxcodec/faker/v3"
+)
 
 const (
 	rightSpot = "🟩"
@@ -59,4 +63,13 @@ func NewGuess(guess string, solution string) *Guess {
 	}
 	g.Evaluation = g.Match(solution)
 	return g
+}
+
+// NewWotd will return a new word of the day.
+func NewWotd() string {
+	word := faker.Word()
+	for len(word) != 5 {
+		word = faker.Word()
+	}
+	return strings.ToUpper(word)
 }

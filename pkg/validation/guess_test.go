@@ -69,3 +69,12 @@ func TestWonFails(t *testing.T) {
 		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
 	}
 }
+
+func TestNewWotdSucceeds(t *testing.T) {
+	want := 5
+	got := len(NewWotd())
+
+	if got != want {
+		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
+	}
+}

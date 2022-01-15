@@ -2,7 +2,10 @@ module github.com/TheDonDope/gordle
 
 go 1.17
 
-require github.com/erikgeiser/promptkit v0.6.0
+require (
+	github.com/bxcodec/faker/v3 v3.7.0
+	github.com/erikgeiser/promptkit v0.6.0
+)
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect

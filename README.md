@@ -8,31 +8,32 @@ A TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage
 $ go run ./cmd/cli
 Welcome to 🟩🟨⬛ Gordle ⬛🟨🟩
 You have 6 trys to guess the word of the day.
+NOTE: The current implementation will pick a new word on every run!
 🟩 means, the letter is in the word and in the correct spot.
 🟨 means, that the letter is in the word but in the wrong spot.
 ⬛ means, that the letter is in not in the word in any spot.
-Enter 5 characters 12345
-12345 ⬛⬛⬛⬛⬛ (Try 1/6)
-Enter 5 characters ALTEN
-ALTEN 🟩🟩🟩🟩⬛ (Try 2/6)
-Enter 5 characters ATLAS
-ATLAS 🟩🟨🟨🟨⬛ (Try 3/6)
-Enter 5 characters RASEN
-RASEN 🟨🟨⬛🟩⬛ (Try 4/6)
-Enter 5 characters NORMS
-NORMS ⬛⬛🟨⬛⬛ (Try 5/6)
-Enter 5 characters TANGY
-TANGY 🟨🟨⬛⬛⬛ (Try 6/6)
+Enter 5 characters ALTER
+ALTER 🟨🟩⬛⬛⬛ (Try 1/6)
+Enter 5 characters ELONG
+ELONG ⬛🟩⬛⬛⬛ (Try 2/6)
+Enter 5 characters ILLIC
+ILLIC ⬛🟩🟩⬛⬛ (Try 3/6)
+Enter 5 characters ULLAG
+ULLAG 🟩🟩🟩🟩⬛ (Try 4/6)
+Enter 5 characters ULLAD
+ULLAD 🟩🟩🟩🟩⬛ (Try 5/6)
+Enter 5 characters ULLAN
+ULLAN 🟩🟩🟩🟩⬛ (Try 6/6)
 
-Your Gordle results:
-12345 ⬛⬛⬛⬛⬛ (1/6)
-ALTEN 🟩🟩🟩🟩⬛ (2/6)
-ATLAS 🟩🟨🟨🟨⬛ (3/6)
-RASEN 🟨🟨⬛🟩⬛ (4/6)
-NORMS ⬛⬛🟨⬛⬛ (5/6)
-TANGY 🟨🟨⬛⬛⬛ (6/6)
+Your Gordle results (2022-01-16):
+ALTER 🟨🟩⬛⬛⬛ (1/6)
+ELONG ⬛🟩⬛⬛⬛ (2/6)
+ILLIC ⬛🟩🟩⬛⬛ (3/6)
+ULLAG 🟩🟩🟩🟩⬛ (4/6)
+ULLAD 🟩🟩🟩🟩⬛ (5/6)
+ULLAN 🟩🟩🟩🟩⬛ (6/6)
 
-The solution was: ALTER
+The solution was: ULLAM
 ```
 
 ## Building
