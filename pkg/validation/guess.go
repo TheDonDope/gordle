@@ -38,7 +38,7 @@ func (g *Guess) Match(solution string) string {
 		}
 		// If not, is the character present in the rest of the solution?
 		for j := range solution {
-			if j > i && (g.Value[i] == solution[j]) {
+			if j != i && (g.Value[i] == solution[j]) {
 				evaluation[i] = wrongSpot
 			}
 		}
