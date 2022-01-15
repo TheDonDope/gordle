@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/erikgeiser/promptkit/textinput"
 
@@ -49,7 +50,7 @@ func main() {
 		}
 		r++
 	}
-	fmt.Printf("\nYour Gordle results:\n")
+	fmt.Printf("\nYour Gordle results (%v):\n", time.Now().Format("2006-01-02"))
 	for i, v := range guesses {
 		fmt.Printf("%v %v (%v/%v)\n", v.Value, v.Evaluation, i+1, max)
 	}
