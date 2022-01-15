@@ -13,6 +13,7 @@ const (
 	wrong   = "🟨"
 	nospot  = "⬛"
 	gotd    = "ALTER"
+	max     = 6
 	cr      = "\033[0;0H"
 )
 
@@ -32,6 +33,10 @@ func evaluate(guess string, solution string) string {
 	return strings.Join(evaluation, "")
 }
 
+func won(guess *Guess) bool {
+	return guess.Evaluation == "🟩🟩🟩🟩🟩"
+}
+
 func newGuess(guess string) *Guess {
 	return &Guess{
 		Value:      guess,
@@ -40,10 +45,9 @@ func newGuess(guess string) *Guess {
 }
 
 func main() {
-	guesses := [6]*Guess{}
+	guesses := []*Guess{}
 
 	r := 1
-	max := 6
 
 	fmt.Println("Welcome to 🟩🟨⬛ Gordle ⬛🟨🟩")
 	fmt.Println("You have 6 trys to guess the word of the day.")
@@ -67,11 +71,16 @@ func main() {
 		}
 		g := newGuess(val)
 		fmt.Printf("%v %v (Try %v/%v)\n", g.Value, g.Evaluation, r, max)
-		guesses[try] = g
+		guesses = append(guesses, g)
+		if won(g) {
+			fmt.Println("\nCongratulations, you won! 🥳🥳")
+			break
+		}
 		r++
 	}
 	fmt.Printf("\nYour Gordle results:\n")
 	for i, v := range guesses {
 		fmt.Printf("%v %v (%v/%v)\n", v.Value, v.Evaluation, i+1, max)
 	}
+	fmt.Printf("\nThe solution was: %s", gotd)
 }
