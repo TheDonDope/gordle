@@ -3,9 +3,9 @@ package validation
 import "strings"
 
 const (
-	correct = "🟩"
-	wrong   = "🟨"
-	nospot  = "⬛"
+	rightSpot = "🟩"
+	wrongSpot = "🟨"
+	noSpot    = "⬛"
 )
 
 // Guesser ...
@@ -25,10 +25,22 @@ type Guess struct {
 
 // Match returns the pattern of matching to the given solution word.
 func (g *Guess) Match(solution string) string {
-	evaluation := []string{"⬛", "⬛", "⬛", "⬛", "⬛"}
+	evaluation := []string{noSpot, noSpot, noSpot, noSpot, noSpot}
 	if g.Value == solution {
 		for i := range evaluation {
-			evaluation[i] = "🟩"
+			evaluation[i] = rightSpot
+		}
+	}
+	for i := range g.Value {
+		// Is it exactly the same?
+		if g.Value[i] == solution[i] {
+			evaluation[i] = rightSpot
+		}
+		// If not, is the character present in the rest of the solution?
+		for j := range solution {
+			if j > i && (g.Value[i] == solution[j]) {
+				evaluation[i] = wrongSpot
+			}
 		}
 	}
 	return strings.Join(evaluation, "")
