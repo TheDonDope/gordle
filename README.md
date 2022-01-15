@@ -1,4 +1,4 @@
-# gordle
+# Gordle
 
 [![CodeQL](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml)
 
@@ -34,11 +34,20 @@ $ go build ./cmd/cli
 <Empty output on build success>
 ```
 
-- Build the server command:
+## Running
+
+- Either run:
 
 ```shell
-$ go build ./cmd/server
-<Empty output on build success>
+$ go run ./cmd/cli
+[...]
+```
+
+- Or run this after having build the command:
+
+```shell
+$ ./cli
+[...]
 ```
 
 ## Running Tests
@@ -48,9 +57,7 @@ $ go build ./cmd/server
 ```shell
 $ go test -coverpkg=all ./... -coverprofile=coverage.out
 ?       github.com/TheDonDope/gordle/cmd/cli    [no test files]
-?       github.com/TheDonDope/gordle/cmd/server [no test files]
-?       github.com/TheDonDope/gordle/pkg/config [no test files]
-?       github.com/TheDonDope/gordle/pkg/http   [no test files]
+?       github.com/TheDonDope/gordle/pkg/validation     [no test files]
 ```
 
 - Open the results in the browser:
@@ -58,14 +65,4 @@ $ go test -coverpkg=all ./... -coverprofile=coverage.out
 ```shell
 $ go tool cover -html=coverage.out
 <Opens Browser>
-```
-
-## Deploying to Kubernetes
-
-- Build and run the server:
-
-```shell
-$ kubectl apply -f server-deployment.yaml,server-service.yaml
-deployment.apps/server created
-service/server created
 ```
