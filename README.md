@@ -65,9 +65,9 @@ $ ./cli
 - Run the testsuite with coverage enabled:
 
 ```shell
-$ go test -coverpkg=all ./... -coverprofile=coverage.out
+$ go test ./... -coverprofile=coverage.out
 ?       github.com/TheDonDope/gordle/cmd/cli    [no test files]
-ok      github.com/TheDonDope/gordle/pkg/validation     0.164s  coverage: 13.0% of statements in all
+ok      github.com/TheDonDope/gordle/pkg/validation     0.001s  coverage: 100.0% of statements
 ```
 
 - Open the results in the browser:
