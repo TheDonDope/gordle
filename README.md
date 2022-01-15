@@ -67,7 +67,7 @@ $ ./cli
 ```shell
 $ go test -coverpkg=all ./... -coverprofile=coverage.out
 ?       github.com/TheDonDope/gordle/cmd/cli    [no test files]
-ok      github.com/TheDonDope/gordle/pkg/validation     0.635s  coverage: 12.7% of statements in all [no tests to run]
+ok      github.com/TheDonDope/gordle/pkg/validation     0.164s  coverage: 13.0% of statements in all
 ```
 
 - Open the results in the browser:
