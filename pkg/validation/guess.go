@@ -30,17 +30,18 @@ func (g *Guess) Match(solution string) string {
 		for i := range evaluation {
 			evaluation[i] = rightSpot
 		}
+		return strings.Join(evaluation, "")
 	}
 	for i := range g.Value {
-		// Is it exactly the same?
-		if g.Value[i] == solution[i] {
-			evaluation[i] = rightSpot
-		}
-		// If not, is the character present in the rest of the solution?
+		// Is the character present in the rest of the solution?
 		for j := range solution {
 			if j != i && (g.Value[i] == solution[j]) {
 				evaluation[i] = wrongSpot
 			}
+		}
+		// Is the character exactly the same?
+		if g.Value[i] == solution[i] {
+			evaluation[i] = rightSpot
 		}
 	}
 	return strings.Join(evaluation, "")

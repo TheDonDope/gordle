@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func MatchReturns5GreenSquaresOnCompleteCorrectGuess(t *testing.T) {
+func TestMatchReturns5GreenSquaresOnCompleteCorrectGuess(t *testing.T) {
 	solution := "JESUS"
 	prmpt := "JESUS"
 
@@ -18,7 +18,7 @@ func MatchReturns5GreenSquaresOnCompleteCorrectGuess(t *testing.T) {
 	}
 }
 
-func MatchReturns5BlackSquaresIfWordDoesNotMatchAtAll(t *testing.T) {
+func TestMatchReturns5BlackSquaresIfWordDoesNotMatchAtAll(t *testing.T) {
 	solution := "YOLOL"
 	prmpt := "DUNED"
 
@@ -26,6 +26,45 @@ func MatchReturns5BlackSquaresIfWordDoesNotMatchAtAll(t *testing.T) {
 
 	want := "⬛⬛⬛⬛⬛"
 	got := guess.Match(solution)
+	if got != want {
+		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
+	}
+}
+
+func TestMatchReturnsCorrectResult(t *testing.T) {
+	solution := "AFFEN"
+	prmpt := "AFTER"
+
+	guess := NewGuess(prmpt, solution)
+
+	want := "🟩🟩⬛🟩⬛"
+	got := guess.Match(solution)
+	if got != want {
+		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
+	}
+}
+
+func TestWonSucceeds(t *testing.T) {
+	solution := "AFFEN"
+	prmpt := "AFFEN"
+
+	guess := NewGuess(prmpt, solution)
+
+	want := true
+	got := guess.Won()
+	if got != want {
+		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
+	}
+}
+
+func TestWonFails(t *testing.T) {
+	solution := "AFFEN"
+	prmpt := "ALTER"
+
+	guess := NewGuess(prmpt, solution)
+
+	want := false
+	got := guess.Won()
 	if got != want {
 		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
 	}
