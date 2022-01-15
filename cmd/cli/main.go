@@ -3,49 +3,20 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/erikgeiser/promptkit/textinput"
+
+	val "github.com/TheDonDope/gordle/pkg/validation"
 )
 
 const (
-	correct = "🟩"
-	wrong   = "🟨"
-	nospot  = "⬛"
-	gotd    = "ALTER"
-	max     = 6
-	cr      = "\033[0;0H"
+	wotd = "ALTER"
+	max  = 6
+	cr   = "\033[0;0H"
 )
 
-// Guess ...
-type Guess struct {
-	Value      string
-	Evaluation string
-}
-
-func evaluate(guess string, solution string) string {
-	evaluation := []string{"⬛", "⬛", "⬛", "⬛", "⬛"}
-	if guess == solution {
-		for i := range evaluation {
-			evaluation[i] = "🟩"
-		}
-	}
-	return strings.Join(evaluation, "")
-}
-
-func won(guess *Guess) bool {
-	return guess.Evaluation == "🟩🟩🟩🟩🟩"
-}
-
-func newGuess(guess string) *Guess {
-	return &Guess{
-		Value:      guess,
-		Evaluation: evaluate(guess, gotd),
-	}
-}
-
 func main() {
-	guesses := []*Guess{}
+	guesses := []*val.Guess{}
 
 	r := 1
 
@@ -63,16 +34,16 @@ func main() {
 	}
 
 	for try := 0; try < 6; try++ {
-		val, err := input.RunPrompt()
+		prmpt, err := input.RunPrompt()
 		if err != nil {
 			fmt.Printf("Error: %v\n", err)
 
 			os.Exit(1)
 		}
-		g := newGuess(val)
+		g := val.NewGuess(prmpt, wotd)
 		fmt.Printf("%v %v (Try %v/%v)\n", g.Value, g.Evaluation, r, max)
 		guesses = append(guesses, g)
-		if won(g) {
+		if g.Won() {
 			fmt.Println("\nCongratulations, you won! 🥳🥳")
 			break
 		}
@@ -82,5 +53,5 @@ func main() {
 	for i, v := range guesses {
 		fmt.Printf("%v %v (%v/%v)\n", v.Value, v.Evaluation, i+1, max)
 	}
-	fmt.Printf("\nThe solution was: %s", gotd)
+	fmt.Printf("\nThe solution was: %s", wotd)
 }
