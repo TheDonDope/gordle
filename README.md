@@ -4,6 +4,27 @@
 
 A TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage.co.uk/wordle/)!
 
+```shell
+$ go run ./cmd/cli
+Welcome to 🟩🟨⬛ Gordle ⬛🟨🟩
+You have 6 trys to guess the word of the day.
+🟩 means, the letter is in the word and in the correct spot.
+🟨 means, that the letter is in the word but in the wrong spot.
+⬛ means, that the letter is in not in the word in any spot.
+Enter 5 characters 12345
+12345 ⬛⬛⬛⬛⬛ (Try 1/6)
+Enter 5 characters ALTER
+ALTER 🟩🟩🟩🟩🟩 (Try 2/6)
+
+Congratulations, you won! 🥳🥳
+
+Your Gordle results:
+12345 ⬛⬛⬛⬛⬛ (1/6)
+ALTER 🟩🟩🟩🟩🟩 (2/6)
+
+The solution was: ALTER
+```
+
 ## Building
 
 - Build the cli command:
