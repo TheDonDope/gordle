@@ -13,14 +13,24 @@ You have 6 trys to guess the word of the day.
 ⬛ means, that the letter is in not in the word in any spot.
 Enter 5 characters 12345
 12345 ⬛⬛⬛⬛⬛ (Try 1/6)
-Enter 5 characters ALTER
-ALTER 🟩🟩🟩🟩🟩 (Try 2/6)
-
-Congratulations, you won! 🥳🥳
+Enter 5 characters ALTEN
+ALTEN 🟩🟩🟩🟩⬛ (Try 2/6)
+Enter 5 characters ATLAS
+ATLAS 🟩🟨🟨🟨⬛ (Try 3/6)
+Enter 5 characters RASEN
+RASEN 🟨🟨⬛🟩⬛ (Try 4/6)
+Enter 5 characters NORMS
+NORMS ⬛⬛🟨⬛⬛ (Try 5/6)
+Enter 5 characters TANGY
+TANGY 🟨🟨⬛⬛⬛ (Try 6/6)
 
 Your Gordle results:
 12345 ⬛⬛⬛⬛⬛ (1/6)
-ALTER 🟩🟩🟩🟩🟩 (2/6)
+ALTEN 🟩🟩🟩🟩⬛ (2/6)
+ATLAS 🟩🟨🟨🟨⬛ (3/6)
+RASEN 🟨🟨⬛🟩⬛ (4/6)
+NORMS ⬛⬛🟨⬛⬛ (5/6)
+TANGY 🟨🟨⬛⬛⬛ (6/6)
 
 The solution was: ALTER
 ```
