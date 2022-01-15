@@ -4,14 +4,36 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/TheDonDope/gordle/pkg/config"
-	tea "github.com/charmbracelet/bubbletea"
+	"github.com/erikgeiser/promptkit/textinput"
 )
 
+const (
+	correct = "🟩"
+	wrong = "🟨"
+	nospot = "⬛"
+)
+
+type Guess struct {
+	Next *Guess
+	Value interface{}
+}
+
 func main() {
-	p := tea.NewProgram(config.InitialModel)
-	if err := p.Start(); err != nil {
-		fmt.Printf("Alas, there's been an error: %v", err)
+	//var first *Guess
+	//guesses := [6]*Guess{}
+	//\033[0;0H
+
+	input := textinput.New("Enter 5 characters")
+	input.InitialValue = "⬛⬛⬛⬛⬛"
+	input.Placeholder = "Your need exactly 5 characters"
+
+	guess, err := input.RunPrompt()
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+
 		os.Exit(1)
 	}
+
+	// do something with the result
+	_ = guess
 }
