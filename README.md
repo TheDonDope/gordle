@@ -1,6 +1,6 @@
 # gordle
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/74929ad9fdd64d3e844a4709e1c87924)](https://app.codacy.com/gh/TheDonDope/gordle?utm_source=github.com&utm_medium=referral&utm_content=TheDonDope/gordle&utm_campaign=Badge_Grade)
+[![CodeQL](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml)
 
 A TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage.co.uk/wordle/)!
 
