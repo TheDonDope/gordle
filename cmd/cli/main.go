@@ -45,7 +45,7 @@ func main() {
 		fmt.Printf("%v %v (Try %v/%v)\n", g.Value, g.Evaluation, r, maxTrys)
 		guesses = append(guesses, g)
 		if g.Won() {
-			fmt.Println("\nCongratulations, you won! 🥳🥳")
+			fmt.Println("\nCongratulations, you won! 🥳")
 			break
 		}
 		r++

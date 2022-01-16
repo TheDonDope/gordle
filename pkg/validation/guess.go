@@ -80,7 +80,7 @@ func NewWotd() string {
 		w := allWords[i]
 		if len(w) == 5 && onlyAlpha(w) {
 			word = w
-			return strings.ToUpper(word)
+			return strings.ToLower(word)
 		}
 	}
 	return word
