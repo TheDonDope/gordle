@@ -4,6 +4,10 @@
 
 A golang TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage.co.uk/wordle/)!
 
+## System requirements
+
+A system dictionary must be installed. On debian based systems run `$ apt-get install wbritish` or `$ apt-get install wamerican`.
+
 ```shell
 $ go run ./cmd/cli
 Welcome to 🟩🟨⬛ Gordle ⬛🟨🟩
