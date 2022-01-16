@@ -54,5 +54,5 @@ func main() {
 	for i, v := range guesses {
 		fmt.Printf("%v %v (%v/%v)\n", v.Value, v.Evaluation, i+1, maxTrys)
 	}
-	fmt.Printf("\nThe solution was: %s", gotd)
+	fmt.Printf("\nThe solution was: %s\n", gotd)
 }
