@@ -12,28 +12,28 @@ NOTE: The current implementation will pick a new word on every run!
 🟩 means, the letter is in the word and in the correct spot.
 🟨 means, that the letter is in the word but in the wrong spot.
 ⬛ means, that the letter is in not in the word in any spot.
-Enter 5 characters ALTER
-ALTER 🟨🟩⬛⬛⬛ (Try 1/6)
-Enter 5 characters ELONG
-ELONG ⬛🟩⬛⬛⬛ (Try 2/6)
-Enter 5 characters ILLIC
-ILLIC ⬛🟩🟩⬛⬛ (Try 3/6)
-Enter 5 characters ULLAG
-ULLAG 🟩🟩🟩🟩⬛ (Try 4/6)
-Enter 5 characters ULLAD
-ULLAD 🟩🟩🟩🟩⬛ (Try 5/6)
-Enter 5 characters ULLAN
-ULLAN 🟩🟩🟩🟩⬛ (Try 6/6)
+Enter 5 characters alter
+alter ⬛⬛🟩🟩⬛ (Try 1/6)
+Enter 5 characters tests
+tests 🟨🟨🟨🟨🟩 (Try 2/6)
+Enter 5 characters setts
+setts 🟨🟨🟩🟨🟩 (Try 3/6)
+Enter 5 characters estes
+estes 🟨🟨🟩🟩🟩 (Try 4/6)
+Enter 5 characters setes
+setes 🟨🟨🟩🟩🟩 (Try 5/6)
+Enter 5 characters mates
+mates ⬛⬛🟩🟩🟩 (Try 6/6)
 
 Your Gordle results (2022-01-16):
-ALTER 🟨🟩⬛⬛⬛ (1/6)
-ELONG ⬛🟩⬛⬛⬛ (2/6)
-ILLIC ⬛🟩🟩⬛⬛ (3/6)
-ULLAG 🟩🟩🟩🟩⬛ (4/6)
-ULLAD 🟩🟩🟩🟩⬛ (5/6)
-ULLAN 🟩🟩🟩🟩⬛ (6/6)
+alter ⬛⬛🟩🟩⬛ (1/6)
+tests 🟨🟨🟨🟨🟩 (2/6)
+setts 🟨🟨🟩🟨🟩 (3/6)
+estes 🟨🟨🟩🟩🟩 (4/6)
+setes 🟨🟨🟩🟩🟩 (5/6)
+mates ⬛⬛🟩🟩🟩 (6/6)
 
-The solution was: ULLAM
+The solution was: dotes
 ```
 
 ## Building
