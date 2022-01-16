@@ -1,8 +1,6 @@
 github.com/atotto/clipboard v0.1.2/go.mod h1:ZY9tmq7sm5xIbd9bOK4onWV4S6X0u6GY7Vn0Yu86PYI=
 github.com/atotto/clipboard v0.1.4 h1:EH0zSVneZPSuFR11BlR9YppQTVDbh5+16AmcJi4g1z4=
 github.com/atotto/clipboard v0.1.4/go.mod h1:ZY9tmq7sm5xIbd9bOK4onWV4S6X0u6GY7Vn0Yu86PYI=
-github.com/bxcodec/faker/v3 v3.7.0 h1:qWAFFwcyVS0ukF0UoJju1wBLO0cuPQ7JdVBPggM8kNo=
-github.com/bxcodec/faker/v3 v3.7.0/go.mod h1:gF31YgnMSMKgkvl+fyEo1xuSMbEuieyqfeslGYFjneM=
 github.com/charmbracelet/bubbles v0.8.0 h1:+l2op90Ag37Vn+30O1hbg/0wBl+e+sxHhgY1F/rvdHs=
 github.com/charmbracelet/bubbles v0.8.0/go.mod h1:5WX1sSSjNCgCrzvRMN/z23HxvWaa+AI16Ch0KPZPeDs=
 github.com/charmbracelet/bubbletea v0.13.1/go.mod h1:tp9tr9Dadh0PLhgiwchE5zZJXm5543JYjHG9oY+5qSg=

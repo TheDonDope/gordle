@@ -1,9 +1,12 @@
 package validation
 
 import (
+	"io/ioutil"
+	"math/rand"
+	"os"
 	"strings"
-
-	"github.com/bxcodec/faker/v3"
+	"time"
+	"unicode"
 )
 
 const (
@@ -67,9 +70,42 @@ func NewGuess(guess string, solution string) *Guess {
 
 // NewWotd will return a new word of the day.
 func NewWotd() string {
-	word := faker.Word()
-	for len(word) != 5 {
-		word = faker.Word()
+	word := ""
+
+	allWords := readWords()
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(allWords), func(i, j int) { allWords[i], allWords[j] = allWords[j], allWords[i] })
+
+	for i := 0; len(word) != 5; i++ {
+		w := allWords[i]
+		if len(w) == 5 && onlyAlpha(w) {
+			word = w
+			return strings.ToUpper(word)
+		}
 	}
-	return strings.ToUpper(word)
+	return word
+}
+
+func onlyAlpha(s string) bool {
+	for _, r := range s {
+		if !unicode.IsLetter(r) {
+			return false
+		}
+	}
+	return true
+}
+
+func readWords() (words []string) {
+	file, err := os.Open("/usr/share/dict/words")
+	if err != nil {
+		panic(err)
+	}
+
+	bytes, err := ioutil.ReadAll(file)
+	if err != nil {
+		panic(err)
+	}
+
+	words = strings.Split(string(bytes), "\n")
+	return
 }
