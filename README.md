@@ -2,7 +2,7 @@
 
 [![CodeQL](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml)
 
-A TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage.co.uk/wordle/)!
+A golang TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage.co.uk/wordle/)!
 
 ```shell
 $ go run ./cmd/cli

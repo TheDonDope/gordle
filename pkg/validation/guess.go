@@ -96,14 +96,15 @@ func onlyAlpha(s string) bool {
 }
 
 func readWords() (words []string) {
+	words = []string{"NODIC"}
 	file, err := os.Open("/usr/share/dict/words")
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	bytes, err := ioutil.ReadAll(file)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	words = strings.Split(string(bytes), "\n")
