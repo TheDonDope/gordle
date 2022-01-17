@@ -9,31 +9,33 @@ import (
 	"unicode"
 )
 
-// NewWotd returns a new Word of the day.
-func NewWotd() string {
-	wotd := ""
-
-	allWords := readWords()
-	rand.Seed(time.Now().UnixNano())
-	rand.Shuffle(len(allWords), func(i, j int) { allWords[i], allWords[j] = allWords[j], allWords[i] })
-
-	for i := 0; len(wotd) != 5; i++ {
-		w := allWords[i]
-		if len(w) == 5 && onlyAlpha(w) {
-			wotd = w
-			return strings.ToLower(wotd)
-		}
-	}
-	return wotd
+// Dictionary represents a collection of words.
+type Dictionary struct {
+	maxLength int
+	allWords  []string
 }
 
-func onlyAlpha(s string) bool {
-	for _, r := range s {
-		if !unicode.IsLetter(r) {
-			return false
+// NewDictionary returns a new, word filled dictionary.
+func NewDictionary(maxLength int) *Dictionary {
+	return &Dictionary{
+		maxLength: maxLength,
+		allWords:  readWords(),
+	}
+}
+
+// NewWotd returns a new Word of the day.
+func (d *Dictionary) NewWotd() string {
+	// First of all, shuffle the whole existing word list...
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(d.allWords), func(i, j int) { d.allWords[i], d.allWords[j] = d.allWords[j], d.allWords[i] })
+
+	// Pick the first word that matches the maxLength constraints
+	for _, w := range d.allWords {
+		if len(w) == d.maxLength && onlyAlpha(w) {
+			return strings.ToLower(w)
 		}
 	}
-	return true
+	return "!word"
 }
 
 func readWords() (words []string) {
@@ -50,4 +52,13 @@ func readWords() (words []string) {
 
 	words = strings.Split(string(bytes), "\n")
 	return
+}
+
+func onlyAlpha(s string) bool {
+	for _, r := range s {
+		if !unicode.IsLetter(r) {
+			return false
+		}
+	}
+	return true
 }

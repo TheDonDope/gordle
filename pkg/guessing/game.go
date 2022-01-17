@@ -21,18 +21,21 @@ const (
 
 // Game encapsulates the state of the guessing game.
 type Game struct {
-	round   uint8
+	round   int
 	guesses []*Guess
+	dict    *storage.Dictionary
 	wotd    string
 }
 
 // NewGame returns a fresh round of gordle!
 func NewGame() *Game {
-	return &Game{
+	g := &Game{
 		round:   1,
 		guesses: []*Guess{},
-		wotd:    storage.NewWotd(),
+		dict:    storage.NewDictionary(maxTrys),
 	}
+	g.wotd = g.dict.NewWotd()
+	return g
 }
 
 // GreetPlayers says hello to the players.
