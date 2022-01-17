@@ -8,6 +8,7 @@ import (
 	"os"
 	"sync"
 	"testing"
+	"time"
 )
 
 func TestGreetPlayersSucceeds(t *testing.T) {
@@ -20,6 +21,27 @@ func TestGreetPlayersSucceeds(t *testing.T) {
 
 	got := captureOutput(func() {
 		GreetPlayers()
+	})
+
+	if got != want {
+		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
+	}
+}
+
+func TestPrintResultsSucceeds(t *testing.T) {
+	g := NewGame()
+	g.wotd = "yamls"
+	prompt := "yamls"
+	guess := NewGuess(prompt, g)
+	g.guesses = append(g.guesses, guess)
+	today := time.Now().Format("2006-01-02")
+
+	want := "\nYour Gordle results (" + today + "):\n" +
+		"yamls 🟩🟩🟩🟩🟩 (1/6)\n" +
+		"\nThe solution was: yamls\n"
+
+	got := captureOutput(func() {
+		g.PrintResults()
 	})
 
 	if got != want {
