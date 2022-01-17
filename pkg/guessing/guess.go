@@ -1,112 +1,42 @@
 package guessing
 
-import (
-	"io/ioutil"
-	"math/rand"
-	"os"
-	"strings"
-	"time"
-	"unicode"
-)
+import "strings"
 
-const (
-	rightSpot = "🟩"
-	wrongSpot = "🟨"
-	noSpot    = "⬛"
-)
-
-// Guesser ...
-type Guesser interface {
-	// Won returns true if the whole word matched 100% to the word of the day.
-	Won(solution string) bool
-
-	// Match returns the pattern of matching to the given solution word.
-	Match(solution string) string
-}
-
-// Guess ...
+// Guess encapsulates the user input and its emoji-square-rating.
 type Guess struct {
-	Value      string
-	Evaluation string
-}
-
-// Match returns the pattern of matching to the given solution word.
-func (g *Guess) Match(solution string) string {
-	evaluation := []string{noSpot, noSpot, noSpot, noSpot, noSpot}
-	if g.Value == solution {
-		for i := range evaluation {
-			evaluation[i] = rightSpot
-		}
-		return strings.Join(evaluation, "")
-	}
-	for i := range g.Value {
-		// Is the character present in the rest of the solution?
-		for j := range solution {
-			if j != i && (g.Value[i] == solution[j]) {
-				evaluation[i] = wrongSpot
-			}
-		}
-		// Is the character exactly the same?
-		if g.Value[i] == solution[i] {
-			evaluation[i] = rightSpot
-		}
-	}
-	return strings.Join(evaluation, "")
-}
-
-// Won returns true if the whole word matched 100% to the word of the day.
-func (g *Guess) Won() bool {
-	return g.Evaluation == "🟩🟩🟩🟩🟩"
+	Prompt string
+	Rating string
 }
 
 // NewGuess creates a new guess and matches it to the solution.
-func NewGuess(guess string, solution string) *Guess {
+func NewGuess(prompt string, game *Game) *Guess {
 	g := &Guess{
-		Value: guess,
+		Prompt: prompt,
 	}
-	g.Evaluation = g.Match(solution)
+	g.Rating = RateGuess(prompt, game.wotd)
 	return g
 }
 
-// NewWotd will return a new word of the day.
-func NewWotd() string {
-	word := ""
-
-	allWords := readWords()
-	rand.Seed(time.Now().UnixNano())
-	rand.Shuffle(len(allWords), func(i, j int) { allWords[i], allWords[j] = allWords[j], allWords[i] })
-
-	for i := 0; len(word) != 5; i++ {
-		w := allWords[i]
-		if len(w) == 5 && onlyAlpha(w) {
-			word = w
-			return strings.ToLower(word)
+// RateGuess returns the calculated emoji square result of the given guess and solution.
+func RateGuess(guess string, solution string) string {
+	rating := []string{noSpot, noSpot, noSpot, noSpot, noSpot}
+	if guess == solution {
+		for i := range rating {
+			rating[i] = rightSpot
+		}
+		return strings.Join(rating, "")
+	}
+	for i := range guess {
+		// Is the character present in the rest of the solution?
+		for j := range solution {
+			if j != i && (guess[i] == solution[j]) {
+				rating[i] = wrongSpot
+			}
+		}
+		// Is the character exactly the same?
+		if guess[i] == solution[i] {
+			rating[i] = rightSpot
 		}
 	}
-	return word
-}
-
-func onlyAlpha(s string) bool {
-	for _, r := range s {
-		if !unicode.IsLetter(r) {
-			return false
-		}
-	}
-	return true
-}
-
-func readWords() (words []string) {
-	words = []string{"NODIC"}
-	file, err := os.Open("/usr/share/dict/words")
-	if err != nil {
-		return
-	}
-
-	bytes, err := ioutil.ReadAll(file)
-	if err != nil {
-		return
-	}
-
-	words = strings.Split(string(bytes), "\n")
-	return
+	return strings.Join(rating, "")
 }
