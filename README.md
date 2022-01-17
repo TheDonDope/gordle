@@ -72,7 +72,7 @@ $ ./cli
 ```shell
 $ go test ./... -coverprofile=coverage.out
 ?       github.com/TheDonDope/gordle/cmd/cli    [no test files]
-ok      github.com/TheDonDope/gordle/pkg/guessing       0.129s  coverage: 55.3% of statements
+ok      github.com/TheDonDope/gordle/pkg/guessing       0.132s  coverage: 63.8% of statements
 ok      github.com/TheDonDope/gordle/pkg/storage        0.007s  coverage: 81.0% of statements
 ```
 
