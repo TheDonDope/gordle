@@ -2,14 +2,12 @@ package guessing
 
 import (
 	"fmt"
-	"io/ioutil"
-	"math/rand"
 	"os"
-	"strings"
 	"time"
-	"unicode"
 
 	"github.com/erikgeiser/promptkit/textinput"
+
+	storage "github.com/TheDonDope/gordle/pkg/storage"
 )
 
 const (
@@ -33,7 +31,7 @@ func NewGame() *Game {
 	return &Game{
 		round:   1,
 		guesses: []*Guess{},
-		wotd:    newWotd(),
+		wotd:    storage.NewWotd(),
 	}
 }
 
@@ -89,51 +87,5 @@ func (g *Game) RateGuess(p *Guess) string {
 
 // GuessWon returns true if the given guess matches the word of the day.
 func (g *Game) GuessWon(p *Guess) bool {
-	return guessWon(p.Prompt, g.wotd)
-}
-
-func newWotd() string {
-	wotd := ""
-
-	allWords := readWords()
-	rand.Seed(time.Now().UnixNano())
-	rand.Shuffle(len(allWords), func(i, j int) { allWords[i], allWords[j] = allWords[j], allWords[i] })
-
-	for i := 0; len(wotd) != 5; i++ {
-		w := allWords[i]
-		if len(w) == 5 && onlyAlpha(w) {
-			wotd = w
-			return strings.ToLower(wotd)
-		}
-	}
-	return wotd
-}
-
-func guessWon(guess string, solution string) bool {
-	return guess == solution
-}
-
-func onlyAlpha(s string) bool {
-	for _, r := range s {
-		if !unicode.IsLetter(r) {
-			return false
-		}
-	}
-	return true
-}
-
-func readWords() (words []string) {
-	words = []string{"NODIC"}
-	file, err := os.Open("/usr/share/dict/words")
-	if err != nil {
-		return
-	}
-
-	bytes, err := ioutil.ReadAll(file)
-	if err != nil {
-		return
-	}
-
-	words = strings.Split(string(bytes), "\n")
-	return
+	return g.wotd == p.Prompt
 }
