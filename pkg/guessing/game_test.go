@@ -91,6 +91,32 @@ func TestRateGuessReturnsCorrectResult(t *testing.T) {
 	}
 }
 
+func TestRateGuessSucceedsOnWordle212(t *testing.T) {
+	g := NewGame()
+	g.wotd = "shire"
+
+	todaysGuesses := []*Guess{NewGuess("alter", g), NewGuess("resin", g), NewGuess("fries", g), NewGuess("heirs", g), NewGuess("shire", g)}
+	todaysRatings := []string{"⬛⬛⬛🟨🟨", "🟨🟨🟨🟨⬛", "⬛🟨🟩🟨🟨", "🟨🟨🟩🟩🟨", "🟩🟩🟩🟩🟩"}
+
+	g.guesses = append(g.guesses, todaysGuesses...)
+
+	for i := range todaysGuesses {
+		for j := range todaysRatings {
+			if i != j {
+				continue
+			}
+			want := todaysRatings[i]
+
+			got := todaysGuesses[i].Rating
+
+			if got != want {
+				t.Error(fmt.Printf("Should have matched, got: %v, want: %v\n", got, want))
+				break
+			}
+		}
+	}
+}
+
 func TestGuessWonSucceeds(t *testing.T) {
 	g := NewGame()
 	g.wotd = "affen"
