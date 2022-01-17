@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - go build -v ./cmd/cli
+  test:
+    cmds:
+      - go test -v ./... -coverprofile=coverage.out
+  run:
+    cmds:
+      - go run ./cmd/cli
+  vet:
+    cmds:
+      - go vet ./...

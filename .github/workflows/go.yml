@@ -15,16 +15,19 @@ jobs:
       - name: Install dictionary
         run: sudo apt-get install -y wbritish
 
-      - name: Install Task
-        uses: arduino/setup-task@v1
-
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
 
+      - name: Install Task
+        uses: arduino/setup-task@v1
+
       - name: Build
-        run: go build -v ./...
+        run: task build
 
       - name: Test
-        run: go test -v ./...
+        run: task test
+
+      - name: Vet
+        run: task vet
