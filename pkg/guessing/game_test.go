@@ -1,9 +1,31 @@
 package guessing
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"log"
+	"os"
+	"sync"
 	"testing"
 )
+
+func TestGreetPlayersSucceeds(t *testing.T) {
+	want := "Welcome to 🟩🟨⬛ Gordle ⬛🟨🟩\n" +
+		"You have 6 trys to guess the word of the day.\n" +
+		"NOTE: The current implementation will pick a new word on every run!\n" +
+		"🟩 means, the letter is in the word and in the correct spot.\n" +
+		"🟨 means, that the letter is in the word but in the wrong spot.\n" +
+		"⬛ means, that the letter is in not in the word in any spot.\n"
+
+	got := captureOutput(func() {
+		GreetPlayers()
+	})
+
+	if got != want {
+		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
+	}
+}
 
 func TestRateGuessAllCorrectGuess(t *testing.T) {
 	g := NewGame()
@@ -73,4 +95,34 @@ func TestGuessWonFails(t *testing.T) {
 	if got != want {
 		t.Error(fmt.Printf("Should have matched, got: %v, want: %v", got, want))
 	}
+}
+
+func captureOutput(f func()) string {
+	reader, writer, err := os.Pipe()
+	if err != nil {
+		panic(err)
+	}
+	stdout := os.Stdout
+	stderr := os.Stderr
+	defer func() {
+		os.Stdout = stdout
+		os.Stderr = stderr
+		log.SetOutput(os.Stderr)
+	}()
+	os.Stdout = writer
+	os.Stderr = writer
+	log.SetOutput(writer)
+	out := make(chan string)
+	wg := new(sync.WaitGroup)
+	wg.Add(1)
+	go func() {
+		var buf bytes.Buffer
+		wg.Done()
+		io.Copy(&buf, reader)
+		out <- buf.String()
+	}()
+	wg.Wait()
+	f()
+	writer.Close()
+	return <-out
 }
