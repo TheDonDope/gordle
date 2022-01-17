@@ -15,6 +15,9 @@ jobs:
       - name: Install dictionary
         run: sudo apt-get install -y wbritish
 
+      - name: Install Task
+        uses: arduino/setup-task@v1
+
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
