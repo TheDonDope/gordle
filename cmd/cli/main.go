@@ -7,7 +7,7 @@ import (
 
 	"github.com/erikgeiser/promptkit/textinput"
 
-	grd "github.com/TheDonDope/gordle/pkg/validation"
+	game "github.com/TheDonDope/gordle/pkg/guessing"
 )
 
 const (
@@ -16,8 +16,8 @@ const (
 )
 
 func main() {
-	gotd := grd.NewWotd()
-	guesses := []*grd.Guess{}
+	gotd := game.NewWotd()
+	guesses := []*game.Guess{}
 	r := 1
 
 	fmt.Println("Welcome to 🟩🟨⬛ Gordle ⬛🟨🟩")
@@ -41,7 +41,7 @@ func main() {
 
 			os.Exit(1)
 		}
-		g := grd.NewGuess(prmpt, gotd)
+		g := game.NewGuess(prmpt, gotd)
 		fmt.Printf("%v %v (Try %v/%v)\n", g.Value, g.Evaluation, r, maxTrys)
 		guesses = append(guesses, g)
 		if g.Won() {
