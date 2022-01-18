@@ -78,7 +78,7 @@ func (g *Game) Play() {
 func (g *Game) PrintResults() {
 	fmt.Printf("\nYour Gordle results (%v):\n", time.Now().Format("2006-01-02"))
 	for i, v := range g.guesses {
-		fmt.Printf("%v %v (%v/%v)\n", v.Prompt, v.Rating, i+1, maxTrys)
+		fmt.Printf("%v (%v/%v): %v\n", v.Rating, i+1, maxTrys, v.Prompt)
 	}
 	fmt.Printf("\nThe solution was: %s\n", g.wotd)
 }

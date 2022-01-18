@@ -37,7 +37,7 @@ func TestPrintResultsSucceeds(t *testing.T) {
 	today := time.Now().Format("2006-01-02")
 
 	want := "\nYour Gordle results (" + today + "):\n" +
-		"yamls 🟩🟩🟩🟩🟩 (1/6)\n" +
+		"🟩🟩🟩🟩🟩 (1/6): yamls\n" +
 		"\nThe solution was: yamls\n"
 
 	got := captureOutput(func() {
