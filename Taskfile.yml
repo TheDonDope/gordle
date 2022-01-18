@@ -6,7 +6,7 @@ tasks:
       - go build -v ./cmd/cli
   test:
     cmds:
-      - go test -v ./... -coverprofile=coverage.out
+      - go install github.com/cweill/gotests/gotests@latest && go test -v ./... -coverprofile=coverage.out
   run:
     cmds:
       - go run ./cmd/cli
