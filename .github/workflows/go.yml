@@ -27,7 +27,7 @@ jobs:
         run: task build
 
       - name: Test
-        run: task test
+        run: task test-ci
 
       - name: Vet
         run: task vet
