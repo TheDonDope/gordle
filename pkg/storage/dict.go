@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"io"
 	"io/ioutil"
 	"math/rand"
 	"os"
@@ -39,19 +40,35 @@ func (d *Dictionary) NewWotd() string {
 }
 
 func readWords() (words []string) {
-	words = []string{"NODIC"}
-	file, err := os.Open("/usr/share/dict/words")
+	handle, err := os.Open("/usr/share/dict/words")
 	if err != nil {
 		return
 	}
+	defer handle.Close()
 
-	bytes, err := ioutil.ReadAll(file)
+	parsed, err := parseDict(handle)
+	if err != nil {
+		return []string{"NODIC"}
+	}
+	words = parsed
+
+	bytes, err := ioutil.ReadAll(handle)
 	if err != nil {
 		return
 	}
 
 	words = strings.Split(string(bytes), "\n")
 	return
+}
+
+func parseDict(handle io.Reader) ([]string, error) {
+	words := []string{"NODIC"}
+	bytes, err := ioutil.ReadAll(handle)
+	if err != nil {
+		return nil, err
+	}
+	words = strings.Split(string(bytes), "\n")
+	return words, nil
 }
 
 func onlyAlpha(s string) bool {
