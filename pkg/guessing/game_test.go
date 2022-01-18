@@ -29,7 +29,8 @@ func TestGreetPlayersSucceeds(t *testing.T) {
 }
 
 func TestPrintResultsSucceeds(t *testing.T) {
-	g := NewGame()
+	dict, _ := os.Open("/usr/share/dict/words")
+	g := NewGame(dict)
 	g.wotd = "yamls"
 	prompt := "yamls"
 	guess := NewGuess(prompt, g)
@@ -50,7 +51,8 @@ func TestPrintResultsSucceeds(t *testing.T) {
 }
 
 func TestRateGuessAllCorrectGuess(t *testing.T) {
-	g := NewGame()
+	dict, _ := os.Open("/usr/share/dict/words")
+	g := NewGame(dict)
 	g.wotd = "jesus"
 	prompt := "jesus"
 
@@ -64,7 +66,8 @@ func TestRateGuessAllCorrectGuess(t *testing.T) {
 }
 
 func TestRateGuessAllWrongGuess(t *testing.T) {
-	g := NewGame()
+	dict, _ := os.Open("/usr/share/dict/words")
+	g := NewGame(dict)
 	g.wotd = "yolol"
 	prompt := "duned"
 
@@ -78,7 +81,8 @@ func TestRateGuessAllWrongGuess(t *testing.T) {
 }
 
 func TestRateGuessReturnsCorrectResult(t *testing.T) {
-	g := NewGame()
+	dict, _ := os.Open("/usr/share/dict/words")
+	g := NewGame(dict)
 	g.wotd = "affen"
 	prompt := "after"
 	guess := NewGuess(prompt, g)
@@ -92,7 +96,8 @@ func TestRateGuessReturnsCorrectResult(t *testing.T) {
 }
 
 func TestRateGuessSucceedsOnWordle212(t *testing.T) {
-	g := NewGame()
+	dict, _ := os.Open("/usr/share/dict/words")
+	g := NewGame(dict)
 	g.wotd = "shire"
 
 	todaysGuesses := []*Guess{NewGuess("alter", g), NewGuess("resin", g), NewGuess("fries", g), NewGuess("heirs", g), NewGuess("shire", g)}
@@ -118,7 +123,8 @@ func TestRateGuessSucceedsOnWordle212(t *testing.T) {
 }
 
 func TestGuessWonSucceeds(t *testing.T) {
-	g := NewGame()
+	dict, _ := os.Open("/usr/share/dict/words")
+	g := NewGame(dict)
 	g.wotd = "affen"
 	prompt := "affen"
 	guess := NewGuess(prompt, g)
@@ -132,7 +138,8 @@ func TestGuessWonSucceeds(t *testing.T) {
 }
 
 func TestGuessWonFails(t *testing.T) {
-	g := NewGame()
+	dict, _ := os.Open("/usr/share/dict/words")
+	g := NewGame(dict)
 	g.wotd = "affen"
 	prompt := "after"
 	guess := NewGuess(prompt, g)

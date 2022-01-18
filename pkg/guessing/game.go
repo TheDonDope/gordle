@@ -2,6 +2,7 @@ package guessing
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"time"
 
@@ -28,11 +29,11 @@ type Game struct {
 }
 
 // NewGame returns a fresh round of gordle!
-func NewGame() *Game {
+func NewGame(dict io.Reader) *Game {
 	g := &Game{
 		round:   1,
 		guesses: []*Guess{},
-		dict:    storage.NewDictionary(maxTrys),
+		dict:    storage.NewDictionary(maxTrys, dict),
 	}
 	g.wotd = g.dict.NewWotd()
 	return g

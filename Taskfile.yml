@@ -1,12 +1,24 @@
 version: '3'
 
 tasks:
+  clean:
+    cmds:
+      - cmd: rm cli
+        ignore_error: true
+      - cmd: rm coverage.out
+        ignore_error: true
+      - cmd: rm cp.html
+        ignore_error: true
   build:
     cmds:
       - go build -v ./cmd/cli
   test:
     cmds:
-      - go install github.com/cweill/gotests/gotests@latest && go test -v ./... -coverprofile=coverage.out
+      - go install github.com/cweill/gotests/gotests@latest
+      - go test -v ./... -coverprofile=coverage.out
+      - go tool cover -html coverage.out -o cp.html
+      - cmd: explorer.exe .
+        ignore_error: true
   run:
     cmds:
       - go run ./cmd/cli

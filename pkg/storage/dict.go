@@ -4,7 +4,6 @@ import (
 	"io"
 	"io/ioutil"
 	"math/rand"
-	"os"
 	"strings"
 	"time"
 	"unicode"
@@ -17,10 +16,10 @@ type Dictionary struct {
 }
 
 // NewDictionary returns a new, word filled dictionary.
-func NewDictionary(maxLength int) *Dictionary {
+func NewDictionary(maxLength int, dict io.Reader) *Dictionary {
 	return &Dictionary{
 		maxLength: maxLength,
-		allWords:  readWords(),
+		allWords:  readWords(dict),
 	}
 }
 
@@ -39,20 +38,14 @@ func (d *Dictionary) NewWotd() string {
 	return "!word"
 }
 
-func readWords() (words []string) {
-	handle, err := os.Open("/usr/share/dict/words")
-	if err != nil {
-		return
-	}
-	defer handle.Close()
-
-	parsed, err := parseDict(handle)
+func readWords(dict io.Reader) (words []string) {
+	parsed, err := parseDict(dict)
 	if err != nil {
 		return []string{"NODIC"}
 	}
 	words = parsed
 
-	bytes, err := ioutil.ReadAll(handle)
+	bytes, err := ioutil.ReadAll(dict)
 	if err != nil {
 		return
 	}
