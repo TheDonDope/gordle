@@ -64,7 +64,7 @@ func (g *Game) Play() {
 			os.Exit(1)
 		}
 		input := NewGuess(prmpt, g)
-		fmt.Printf("%v %v (Try %v/%v)\n", input.Prompt, input.Rating, g.round, maxTrys)
+		fmt.Printf("%v (Try %v/%v): %v\n", input.Rating, g.round, maxTrys, input.Prompt)
 		g.guesses = append(g.guesses, input)
 		if g.GuessWon(input) {
 			fmt.Println("\nCongratulations, you won! 🥳")

@@ -17,32 +17,32 @@ NOTE: The current implementation will pick a new word on every run!
 🟨 means, that the letter is in the word but in the wrong spot.
 ⬛ means, that the letter is in not in the word in any spot.
 Enter 5 characters alter
-alter ⬛⬛⬛⬛⬛ (Try 1/6)
-Enter 5 characters lists
-lists ⬛⬛🟨⬛🟩 (Try 2/6)
-Enter 5 characters softs
-softs 🟨⬛🟩⬛🟩 (Try 3/6)
-Enter 5 characters usfus
-usfus 🟨🟨🟩🟨🟩 (Try 4/6)
-Enter 5 characters sufss
-sufss 🟨🟩🟩🟨🟩 (Try 5/6)
-Enter 5 characters rufus
-rufus ⬛🟩🟩🟨🟩 (Try 6/6)
+⬛🟨🟨🟨🟨 (Try 1/6): alter
+Enter 5 characters rutel
+🟨⬛🟨🟨🟨 (Try 2/6): rutel
+Enter 5 characters rolet
+🟨⬛🟨🟨🟨 (Try 3/6): rolet
+Enter 5 characters toler
+🟨⬛🟨🟨🟨 (Try 4/6): toler
+Enter 5 characters mulls
+⬛⬛🟨🟨🟨 (Try 5/6): mulls
+Enter 5 characters mills
+⬛🟩🟨🟨🟨 (Try 6/6): mills
 
-Your Gordle results (2022-01-17):
-alter ⬛⬛⬛⬛⬛ (1/6)
-lists ⬛⬛🟨⬛🟩 (2/6)
-softs 🟨⬛🟩⬛🟩 (3/6)
-usfus 🟨🟨🟩🟨🟩 (4/6)
-sufss 🟨🟩🟩🟨🟩 (5/6)
-rufus ⬛🟩🟩🟨🟩 (6/6)
+Your Gordle results (2022-01-18):
+⬛🟨🟨🟨🟨 (1/6): alter
+🟨⬛🟨🟨🟨 (2/6): rutel
+🟨⬛🟨🟨🟨 (3/6): rolet
+🟨⬛🟨🟨🟨 (4/6): toler
+⬛⬛🟨🟨🟨 (5/6): mulls
+⬛🟩🟨🟨🟨 (6/6): mills
 
-The solution was: muffs
+The solution was: lister
 ```
 
 ## Building
 
-- Build the cli command:
+- Build the cli command (alternatively `$ task build` if you are using [Task](https://taskfile.dev/#/)):
 
 ```shell
 $ go build ./cmd/cli
@@ -51,7 +51,7 @@ $ go build ./cmd/cli
 
 ## Running
 
-- Either run:
+- Either run (alternatively `$ task run` if you are using [Task](https://taskfile.dev/#/)):
 
 ```shell
 $ go run ./cmd/cli
@@ -67,7 +67,7 @@ $ ./cli
 
 ## Running Tests
 
-- Run the testsuite with coverage enabled:
+- Run the testsuite with coverage enabled (alternatively `$ task test` if you are using [Task](https://taskfile.dev/#/)):
 
 ```shell
 $ go test ./... -coverprofile=coverage.out
