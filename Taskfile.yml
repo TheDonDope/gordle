@@ -11,9 +11,11 @@ tasks:
         ignore_error: true
   build:
     cmds:
+      - task: clean
       - go build -v ./cmd/cli
   test:
     cmds:
+      - task: clean
       - go install github.com/cweill/gotests/gotests@latest
       - go test -v ./... -coverprofile=coverage.out
       - go tool cover -html coverage.out -o cp.html
@@ -21,7 +23,9 @@ tasks:
         ignore_error: true
   run:
     cmds:
+      - task: clean
       - go run ./cmd/cli
   vet:
     cmds:
+      - task: clean
       - go vet ./...
