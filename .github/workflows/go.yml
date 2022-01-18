@@ -23,9 +23,6 @@ jobs:
       - name: Install Task
         uses: arduino/setup-task@v1
 
-      - name: Install gotests
-        run: go install github.com/cweill/gotests/gotests@latest
-
       - name: Build
         run: task build
 
