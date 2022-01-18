@@ -1,5 +1,8 @@
 version: '3'
 
+env:
+  CODECOV_TOKEN: '1b9cb6f5-7ff2-4a7b-92b6-36d82bd10283'
+
 tasks:
   clean:
     cmds:

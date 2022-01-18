@@ -1,6 +1,6 @@
 # Gordle
 
-[![CodeQL](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml) [![codecov](https://codecov.io/gh/TheDonDope/gordle/branch/develop/graph/badge.svg?token=DM0KH9IJLG)](https://codecov.io/gh/TheDonDope/gordle)
 
 A golang TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage.co.uk/wordle/)!
 
