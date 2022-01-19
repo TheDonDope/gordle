@@ -39,10 +39,7 @@ func (d *Dictionary) NewWotd() string {
 }
 
 func readWords(dict io.Reader) (words []string) {
-	parsed, err := parseDict(dict)
-	if err != nil {
-		return []string{"NODIC"}
-	}
+	parsed, _ := parseDict(dict)
 	words = parsed
 	return
 }
@@ -51,7 +48,7 @@ func parseDict(handle io.Reader) ([]string, error) {
 	words := []string{"NODIC"}
 	bytes, err := ioutil.ReadAll(handle)
 	if err != nil {
-		return nil, err
+		return words, err
 	}
 	words = strings.Split(string(bytes), "\n")
 	return words, nil
