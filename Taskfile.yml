@@ -20,14 +20,14 @@ tasks:
     cmds:
       - task: clean
       - go install github.com/cweill/gotests/gotests@latest
-      - go test -race -v ./... -coverprofile=coverage.out
+      - go test -race -v ./... -coverprofile coverage.out
       - go tool cover -html coverage.out -o cp.html
       - cmd: explorer.exe .
         ignore_error: true
   test-ci:
     cmds:
       - task: clean
-      - go test -race -v ./... -coverprofile=coverage.out -covermode=atomic
+      - go test -race -v ./... -coverprofile coverage.out -covermode=atomic
       - bash <(curl -s https://codecov.io/bash)
 
   run:

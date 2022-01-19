@@ -44,13 +44,6 @@ func readWords(dict io.Reader) (words []string) {
 		return []string{"NODIC"}
 	}
 	words = parsed
-
-	bytes, err := ioutil.ReadAll(dict)
-	if err != nil {
-		return
-	}
-
-	words = strings.Split(string(bytes), "\n")
 	return
 }
 
