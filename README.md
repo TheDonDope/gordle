@@ -72,8 +72,8 @@ $ ./cli
 ```shell
 $ go test -race ./... -coverprofile cp.out
 ?       github.com/TheDonDope/gordle/cmd/cli    [no test files]
-ok      github.com/TheDonDope/gordle/pkg/guessing       0.639s  coverage: 63.8% of statements
-ok      github.com/TheDonDope/gordle/pkg/storage        0.019s  coverage: 56.5% of statements
+ok      github.com/TheDonDope/gordle/pkg/game   0.584s  coverage: 63.8% of statements
+ok      github.com/TheDonDope/gordle/pkg/storage        0.019s  coverage: 57.1% of statements
 ```
 
 - Open the results in the browser:

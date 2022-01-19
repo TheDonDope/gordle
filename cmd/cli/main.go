@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	game "github.com/TheDonDope/gordle/pkg/guessing"
+	"github.com/TheDonDope/gordle/pkg/game"
 )
 
 func main() {

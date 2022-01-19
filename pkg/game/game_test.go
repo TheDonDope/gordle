@@ -1,4 +1,4 @@
-package guessing
+package game
 
 import (
 	"bytes"
