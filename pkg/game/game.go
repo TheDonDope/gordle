@@ -1,6 +1,7 @@
 package game
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -55,11 +56,14 @@ func (g *Game) Play() {
 	input := textinput.New("Enter 5 characters")
 	input.InitialValue = ""
 	input.Placeholder = "You need exactly 5 characters"
-	input.Validate = func(value string) bool {
-		return len(value) == 5
-	}
+    input.Validate = func(s string) error {
+        if len(s) == 5 {
+            return nil
+        }
+        return errors.New("Did not enter 5 characters")
+    }
 
-	for try := 0; try < maxTrys; try++ {
+	for range maxTrys {
 		prmpt, err := input.RunPrompt()
 		if err != nil {
 			fmt.Printf("Error: %v\n", err)
