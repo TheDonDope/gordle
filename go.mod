@@ -1,6 +1,6 @@
 module github.com/TheDonDope/gordle
 
-go 1.17
+go 1.24.1
 
 require github.com/erikgeiser/promptkit v0.6.0
 
