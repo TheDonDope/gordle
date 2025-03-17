@@ -1,33 +1,50 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
 name: Go
 
 on:
   push:
-    branches: [develop]
+    branches: ['develop']
   pull_request:
-    branches: [develop]
+    branches: ['develop']
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install dictionary
-        run: sudo apt-get install -y wbritish
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.24.1
+          go-version: '1.24.1'
 
-      - name: Install Task
-        uses: arduino/setup-task@v1
+      - name: Install Dependencies
+        run: make install
 
       - name: Build
-        run: task build
+        run: make build
 
       - name: Test
-        run: task test-ci
+        run: make test-ci
 
       - name: Vet
-        run: task vet
+        run: make vet
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          # or
+          # api-token: ${{ secrets.CODACY_API_TOKEN }}
+          coverage-reports: 'coverage.out'
+          # or a comma-separated list for multiple reports
+          # coverage-reports: <PATH_TO_REPORT>, <PATH_TO_REPORT>
+          force-coverage-parser: 'go'

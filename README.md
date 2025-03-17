@@ -1,6 +1,6 @@
 # Gordle
 
-[![CodeQL](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TheDonDope/gordle/actions/workflows/codeql-analysis.yml) [![codecov](https://codecov.io/gh/TheDonDope/gordle/branch/develop/graph/badge.svg?token=DM0KH9IJLG)](https://codecov.io/gh/TheDonDope/gordle)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d52553311a5a4fc69d04032c77791cfd)](https://app.codacy.com/gh/TheDonDope/gordle/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Codecov Badge](https://codecov.io/gh/TheDonDope/gordle/graph/badge.svg?token=DM0KH9IJLG)](https://codecov.io/gh/TheDonDope/gordle)
 
 A golang TUI implementation of the popular word quiz [Wordle](https://www.powerlanguage.co.uk/wordle/)!
 
@@ -42,16 +42,16 @@ The solution was: lister
 
 ## Building
 
-- Build the cli command (alternatively `$ task build` if you are using [Task](https://taskfile.dev/#/)):
+- Build the cli command (alternatively `$ make build`):
 
 ```shell
-$ go build ./cmd/cli
+$ go build -v -o ./bin/gordle ./cmd/cli/main.go
 <Empty output on build success>
 ```
 
 ## Running
 
-- Either run (alternatively `$ task run` if you are using [Task](https://taskfile.dev/#/)):
+- Either run (alternatively `$ make`):
 
 ```shell
 $ go run ./cmd/cli
@@ -61,13 +61,13 @@ $ go run ./cmd/cli
 - Or run this after having build the command:
 
 ```shell
-$ ./cli
+$ ./bin/gordle
 [...]
 ```
 
 ## Running Tests
 
-- Run the testsuite with coverage enabled (alternatively `$ task test` if you are using [Task](https://taskfile.dev/#/)):
+- Run the testsuite with coverage enabled (alternatively `$ make test`):
 
 ```shell
 $ go test -race ./... -coverprofile cp.out
