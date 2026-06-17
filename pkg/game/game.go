@@ -15,6 +15,7 @@ import (
 
 const (
 	maxTrys   = 6
+	wordLen   = 5
 	rightSpot = "🟩"
 	wrongSpot = "🟨"
 	noSpot    = "⬛"
@@ -35,7 +36,7 @@ func NewGame(dict io.Reader) *Game {
 	g := &Game{
 		round:   1,
 		guesses: []*Guess{},
-		dict:    storage.NewDictionary(maxTrys, dict),
+		dict:    storage.NewDictionary(wordLen, dict),
 	}
 	g.wotd = g.dict.NewWotd()
 	return g
